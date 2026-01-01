@@ -17,12 +17,27 @@ from mlflow.tracking import MlflowClient
 import dagshub
 from src.logger import logging
 
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "bgaurangan"
+repo_name = "MLOPS-project2"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # -------------------------------------------------------
 # MLflow + DagsHub setup
 # -------------------------------------------------------
-mlflow.set_tracking_uri("https://dagshub.com/bgaurangan/MLOPS-project2.mlflow")
-dagshub.init(repo_owner="bgaurangan", repo_name="MLOPS-project2", mlflow=True)
+# mlflow.set_tracking_uri("https://dagshub.com/bgaurangan/MLOPS-project2.mlflow")
+# dagshub.init(repo_owner="bgaurangan", repo_name="MLOPS-project2", mlflow=True)
 
 
 # -------------------------------------------------------
