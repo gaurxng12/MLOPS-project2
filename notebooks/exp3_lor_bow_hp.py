@@ -12,7 +12,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-
+from creds import (
+    MLFLOW_TRACKING_URI,
+    DAGSHUB_REPO_OWNER,
+    DAGSHUB_REPO_NAME
+)
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
@@ -21,8 +25,8 @@ warnings.filterwarnings("ignore")
 # os.environ["MLFLOW_DISABLE_ARTIFACTS_DOWNLOAD"] = "1"
 
 # Set MLflow Tracking URI & DAGsHub integration
-MLFLOW_TRACKING_URI = "URL"
-dagshub.init(repo_owner="Name", repo_name="Repo Name", mlflow=True)
+MLFLOW_TRACKING_URI = MLFLOW_TRACKING_URI
+dagshub.init(repo_owner=DAGSHUB_REPO_OWNER, repo_name=DAGSHUB_REPO_NAME, mlflow=True)
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 mlflow.set_experiment("LoR Hyperparameter Tuning")
 

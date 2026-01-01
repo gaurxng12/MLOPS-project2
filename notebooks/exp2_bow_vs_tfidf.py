@@ -19,6 +19,11 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import scipy.sparse
+from creds import (
+    MLFLOW_TRACKING_URI,
+    DAGSHUB_REPO_OWNER,
+    DAGSHUB_REPO_NAME
+)
 
 import warnings
 warnings.simplefilter("ignore", UserWarning)
@@ -28,9 +33,9 @@ warnings.filterwarnings("ignore")
 CONFIG = {
     "data_path": "notebooks/data.csv",
     "test_size": 0.2,
-    "mlflow_tracking_uri": "URL",
-    "dagshub_repo_owner": "Name",
-    "dagshub_repo_name": "Repo name",
+    "mlflow_tracking_uri": MLFLOW_TRACKING_URI,
+    "dagshub_repo_owner": DAGSHUB_REPO_OWNER ,
+    "dagshub_repo_name": DAGSHUB_REPO_NAME,
     "experiment_name": "Bow vs TfIdf"
 }
 

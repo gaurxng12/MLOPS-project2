@@ -209,3 +209,12 @@ __marimo__/
 
 local_s3/
 credentials.txt
+models/
+src/model/trainAndEvaluateWithoutAlias.py
+src/model/model_building.py
+src/model/debug_mlflow_run.py
+src/model/model_evaluation.py
+src/model/register_model_standalone.py
+src/model/register_model.py
+creds.py
+data/raw
