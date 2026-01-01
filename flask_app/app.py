@@ -11,11 +11,11 @@ from nltk.corpus import stopwords
 import string
 import re
 import dagshub
-from creds import (
-    MLFLOW_TRACKING_URI,
-    DAGSHUB_REPO_OWNER,
-    DAGSHUB_REPO_NAME
-)
+# from creds import (
+#     MLFLOW_TRACKING_URI,
+#     DAGSHUB_REPO_OWNER,
+#     DAGSHUB_REPO_NAME
+# )
 
 import warnings
 warnings.simplefilter("ignore", UserWarning)
