@@ -1,7 +1,9 @@
-# promote model
+# promote model (MLflow alias-based)
 
 import os
 import mlflow
+from mlflow.tracking import MlflowClient
+
 
 def promote_model():
     # Set up DagsHub credentials for MLflow tracking
@@ -16,31 +18,30 @@ def promote_model():
     repo_owner = "bgaurangan"
     repo_name = "MLOPS-project2"
 
-    # Set up MLflow tracking URI
-    mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+    # Set MLflow tracking URI
+    mlflow.set_tracking_uri(f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow")
 
-    client = mlflow.MlflowClient()
-
+    client = MlflowClient()
     model_name = "my_model"
-    # Get the latest version in staging
-    latest_version_staging = client.get_latest_versions(model_name, stages=["Staging"])[0].version
 
-    # Archive the current production model
-    prod_versions = client.get_latest_versions(model_name, stages=["Production"])
-    for version in prod_versions:
-        client.transition_model_version_stage(
-            name=model_name,
-            version=version.version,
-            stage="Archived"
-        )
+    # Get model version currently tagged as @staging
+    try:
+        staging_model = client.get_model_version_by_alias(model_name, "staging")
+    except Exception:
+        print("No model found with alias @staging. Skipping promotion.")
+        return
 
-    # Promote the new model to production
-    client.transition_model_version_stage(
+    staging_version = staging_model.version
+
+    # Promote staging model to production (alias-based)
+    client.set_registered_model_alias(
         name=model_name,
-        version=latest_version_staging,
-        stage="Production"
+        alias="production",
+        version=staging_version
     )
-    print(f"Model version {latest_version_staging} promoted to Production")
+
+    print(f"Model version {staging_version} promoted to @production")
+
 
 if __name__ == "__main__":
     promote_model()
