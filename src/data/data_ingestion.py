@@ -9,6 +9,9 @@ import yaml
 import logging
 from src.logger import logging
 from src.connections import s3_connection
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
 
 
 def load_params(params_path: str) -> dict:
@@ -74,8 +77,8 @@ def main():
         params = load_params(params_path='params.yaml')
         test_size = params['data_ingestion']['test_size']
         # test_size = 0.2
-        
-        df = load_data(data_url="notebooks/data.csv")
+        csv_path = PROJECT_ROOT / "notebooks" / "data.csv"
+        df = load_data(data_url=str(csv_path))
         # s3 = s3_connection.s3_operations("BucketName", "Key, "Secret Keu")
         # df = s3.fetch_file_from_s3("data.csv")
 
