@@ -32,6 +32,7 @@ stages:
     deps:
       - data/processed
       - params.yaml
+      - models/vectorizer.pkl 
       - src/model/train_and_evaluate.py
     metrics:
       - reports/metrics.json:
