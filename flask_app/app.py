@@ -64,14 +64,14 @@ def remove_small_sentences(df):
             df.text.iloc[i] = np.nan
 
 def normalize_text(text):
-    text = lower_case(text)
-    text = remove_stop_words(text)
-    text = removing_numbers(text)
-    text = removing_punctuations(text)
     text = removing_urls(text)
+    text = removing_numbers(text)
+    text = lower_case(text)
+    text = removing_punctuations(text)
+    text = remove_stop_words(text)
     text = lemmatization(text)
-
     return text
+
 
 
 # -------------------------------------------------------
@@ -158,7 +158,7 @@ def predict():
     text = normalize_text(text)
     # Convert to features
     features = vectorizer.transform([text])
-    features_df = pd.DataFrame(features.toarray(), columns=[str(i) for i in range(features.shape[1])])
+    features_df = pd.DataFrame(features.toarray(), columns=range(features.shape[1]))
 
     # Predict
     result = model.predict(features_df)
@@ -166,7 +166,9 @@ def predict():
 
     # Increment prediction count metric
     PREDICTION_COUNT.labels(prediction=str(prediction)).inc()
-
+    print("Processed text:", text)
+    print("Feature sum:", features.toarray().sum())
+    print("Prediction:", prediction)
     # Measure latency
     REQUEST_LATENCY.labels(endpoint="/predict").observe(time.time() - start_time)
 
