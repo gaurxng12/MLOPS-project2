@@ -4,6 +4,27 @@
 
 ---
 
+## 📌 Table of Contents
+
+- [Problem Statement](#-problem-statement)
+- [Project Overview](#-project-overview)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Pipeline Stages](#-pipeline-stages)
+- [Model Details](#-model-details)
+- [API & Web Interface](#-api--web-interface)
+- [Monitoring](#-monitoring)
+- [CI/CD Workflow](#-cicd-workflow)
+- [Getting Started](#-getting-started)
+- [Running with Docker](#-running-with-docker)
+- [Experiment Tracking](#-experiment-tracking)
+- [Model Registry & Promotion](#-model-registry--promotion)
+- [Configuration](#-configuration)
+- [Results](#-results)
+
+---
+
 # 📌 Overview
 
 This project builds a binary sentiment classification system capable of predicting whether a user review expresses a **positive** or **negative** sentiment.
@@ -335,5 +356,3 @@ MIT License — see the LICENSE file for details.
 
 **Gaurang Bhogle**
 
-* GitHub: https://github.com/bgaurangan
-* DagsHub: https://dagshub.com/bgaurangan/MLOPS-project2
