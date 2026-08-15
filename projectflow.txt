@@ -49,7 +49,7 @@
 31. Add .github/workflows/ci.yaml file
 
 32. Create key token on Dagshub for auth: Go to dagshub repo > Your settings > Tokens > Generate new token
-    >> Please make sure to save token << >> capstone_test: 54b1d67648a9b1267ef906fsdfsd8b292f779f0<<
+    >> Please make sure to save token << >> capstone_test: placeholder token
     >> Add this auth token to github secret&var and update on ci file
 
 
@@ -63,6 +63,6 @@
 35. go to root dir and: "docker build -t capstone-app:latest ."
 36. Try running the image: "docker run -p 8888:5000 capstone-app:latest"
     - This run will give 'OSError: capstone_test environment variable is not set'...obviously
-    - alternate: docker run -p 8888:5000 -e CAPSTONE_TEST=6240be271b84cfe0b0e1f7147e90b13c6ce6180b capstone-app:latest
+    - alternate: docker run -p 8888:5000 -e CAPSTONE_TEST=placeholdertoken capstone-app:latest
     - docker push youruser/capstone-app:latest (optional)
     - optional: try to delete image locally and pull it from dockerhub and run (optional)
